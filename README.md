@@ -1,3 +1,5 @@
+Please read this file from your localmachine using sublime or any other text editor, to have friendly approach
+
 Please make sure you have virtual environment and python installed
 
 1)Set up your development structure:-
