@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^editPost/(?P<slug>[\w-]+)/$', views.edit_post, name='edit_post'),
     url(r'^deletePost/(?P<slug>[\w-]+)/$', views.delete_post, name='delete_post'),
     url(r'^post_api/$', views.PostList.as_view),
+    url(r'^co/$', views.CommentList.as_view()),
+    url(r'^co/(?P<pk>[0-9]+)/$', views.CommentDetail.as_view()),
 
 
 

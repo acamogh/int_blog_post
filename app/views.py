@@ -4,9 +4,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from rest_framework import generics,authentication,viewsets,permissions
 
-from .models import Post
-from .forms import PostForm
-from .serializer import PostSerializer
+from .models import Post,Comment
+from .forms import PostForm,CommentForm
+from .serializer import PostSerializer,CommentSerializer
 
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -23,8 +23,21 @@ class PostListView(ListView):
 
 def detail(request, slug):
     post = Post.objects.get(slug=slug)
+    comment=post.comment_set.all()
+    forms=CommentForm
+    if request.method == 'POST':
+        form=CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.title = post
+            print comment
+            comment.save()
+        else:
+          print form.errors
+    else:
+        form = PostForm()
 
-    return render(request, "blog_detail.html", {'post': post,})
+    return render(request, "blog_detail.html", {'form':forms,'post': post,'comment':comment})
 
 
 def add_post(request):
@@ -74,3 +87,11 @@ class PostList(generics.ListCreateAPIView):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer

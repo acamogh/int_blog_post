@@ -37,3 +37,10 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
         instance.slug = create_slug(instance)
 
 pre_save.connect(pre_save_post_receiver, sender=Post)
+
+class Comment(models.Model):
+    title=models.ForeignKey(Post)
+    comments=models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return '%s' % (self.title)
