@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="742644b1-a8fe-409e-8298-230c043b1ed2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/blog_detail.html" afterPath="$PROJECT_DIR$/template/blog_detail.html" />
-    </list>
+    <list default="true" id="742644b1-a8fe-409e-8298-230c043b1ed2" name="Default" comment="" />
     <ignored path="blog_app.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
