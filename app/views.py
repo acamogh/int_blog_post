@@ -23,7 +23,7 @@ class PostListView(ListView):
 
 def detail(request, slug):
     post = Post.objects.get(slug=slug)
-    comment=post.comment_set.all()
+    post_comment=Comment.objects.order_by('comments')
     forms=CommentForm
     if request.method == 'POST':
         form=CommentForm(request.POST)
@@ -37,7 +37,7 @@ def detail(request, slug):
     else:
         form = PostForm()
 
-    return render(request, "blog_detail.html", {'form':forms,'post': post,'comment':comment})
+    return render(request, "blog_detail.html", {'form':forms,'post': post,'post_comment':post_comment})
 
 
 def add_post(request):

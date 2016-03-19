@@ -9,6 +9,8 @@ urlpatterns = [
     # url(r'^$', views.home, name='home'),
     url(r'^api/$', views.PostList.as_view()),
     url(r'^api/(?P<pk>[0-9]+)/$', views.PostDetail.as_view()),
+    url(r'^co/$', views.CommentList.as_view()),
+    url(r'^co/(?P<pk>[0-9]+)/$', views.CommentDetail.as_view()),
     url(r'^addPost/$', views.add_post, name='add_post'),
     url(r'^$', views.PostListView.as_view(),name='home'),
     url(r'^(?P<slug>[\w-]+)/$', views.detail, name='detail'),

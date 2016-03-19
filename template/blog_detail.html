@@ -20,13 +20,16 @@
         </div>
         <hr />
 
-        {% for com in comment %}
-            {{ com.comments|linebreaks }}
+        {% for post in post_comment %}
+            {{ post.comments|linebreaksmi }}
+
 
         {% endfor %}
+    {{ comment.c }}
 
-        <form method="POST" action="{% url 'detail' slug=post.slug %}">{% csrf_token %}
-            {{ form|crispy }}
+
+        <form method="POST" action="{% url 'detail' slug=post.slug %}">
+            {{ form|crispy }}{% csrf_token %}
             <input type="submit">
 
         </form>
