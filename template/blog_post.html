@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block blog_post %}
+
+    <div class="blog-post">
+        {% for threads in object_list  %}
+            <p class="blog-post-title"><a href="{% url 'detail' slug=threads.slug %}">{{ threads.title }}</a></p>
+            <p class="blog-post-meta"><i class="fa fa-clock-o">&nbsp{{ threads.pub_date|date  }}</i> </p>
+            {{ threads.description|truncatewords:'50' }}.....
+            <p><a href="{% url 'detail' slug=threads.slug %}">See more</a></p>
+            <hr />
+        {% endfor %}
+    </div><!-- /.blog-post -->
+        <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+{#                <li><a href="?page={{ posts.previous_page_number }}"><i class="fa fa-arrow-left"></i>&nbsp;previous</a></li>#}
+                <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-arrow-left"></i>previous</a></li>
+            {% endif %}
+
+            {% for number in paginator.page_range %}
+                {% ifequal number page_obj.number  %}
+                    <li class="active"><a href="?page={{ number }}">{{ number }}</a></li>
+                {% else %}
+                    <li ><a href="?page={{ number }}">{{ number }}</a></li>
+
+                {% endifequal %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">Next &nbsp<i class="fa fa-arrow-right"></i></a></li>
+            {% endif %}
+        </ul>
+
+
+    </nav>
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block blog_post %}
+    <form method="POST" action="{% url 'edit_post' slug=post.slug %}">{% csrf_token %}
+
+        <div class="form-group">
+            <label class="control-label  requiredField" for="title">Title:</label>
+            <input class="textinput textInput form-control" id="id_title" maxlength="200" name="title" type="text" value="{{ post.title }}">
+        </div>
+
+        <div class = "form-group">
+            <label class="control-label  requiredField" for="des">Description</label>
+            <textarea class="textarea form-control" cols="40" id="id_description" maxlength="10" name="description" rows="10" style="margin-top: 0px; margin-bottom: 0px; height: 214px;">{{ post.description }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+
+    </form>
+
+
+{% endblock %}
